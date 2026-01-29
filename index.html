@@ -3,196 +3,1088 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shubham Kumar Chaudhary | Portfolio</title>
+    <title>Shubham Chaudhary | Laravel Full-Stack Developer</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Tailwind Configuration -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: {
+                50: '#f0f9ff',
+                100: '#e0f2fe',
+                200: '#bae6fd',
+                300: '#7dd3fc',
+                400: '#38bdf8',
+                500: '#0ea5e9',
+                600: '#0284c7',
+                700: '#0369a1',
+                800: '#075985',
+                900: '#0c4a6e',
+              },
+              accent: {
+                50: '#f0fdfa',
+                100: '#ccfbf1',
+                200: '#99f6e4',
+                300: '#5eead4',
+                400: '#2dd4bf',
+                500: '#14b8a6',
+                600: '#0d9488',
+                700: '#0f766e',
+                800: '#115e59',
+                900: '#134e4a',
+              }
+            },
+            fontFamily: {
+              'heading': ['Poppins', 'sans-serif'],
+              'body': ['Inter', 'sans-serif'],
+            },
+            animation: {
+              'float': 'float 6s ease-in-out infinite',
+              'fade-in': 'fadeIn 0.8s ease-out',
+              'slide-up': 'slideUp 0.6s ease-out',
+              'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'typewriter': 'typewriter 4s steps(40) 1s 1 normal both, blink 0.75s step-end infinite',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-20px)' },
+              },
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              },
+              slideUp: {
+                '0%': { transform: 'translateY(30px)', opacity: '0' },
+                '100%': { transform: 'translateY(0)', opacity: '1' },
+              },
+              typewriter: {
+                'from': { width: '0' },
+                'to': { width: '100%' },
+              },
+              blink: {
+                'from, to': { 'border-color': 'transparent' },
+                '50%': { 'border-color': '#0ea5e9' },
+              }
+            },
+            backdropBlur: {
+              xs: '2px',
+            }
+          }
+        }
+      }
+    </script>
+    
+    <style>
+      /* Custom CSS for animations and glassmorphism */
+      * {
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+      }
+      
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+      
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Poppins', sans-serif;
+      }
+      
+      .glassmorphism {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      
+      .dark .glassmorphism {
+        background: rgba(15, 23, 42, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      
+      .gradient-bg {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+      
+      .skill-progress-bar {
+        height: 8px;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      
+      .skill-progress-fill {
+        height: 100%;
+        border-radius: 4px;
+        transition: width 1.5s ease-in-out;
+      }
+      
+      .timeline-item::before {
+        content: '';
+        position: absolute;
+        left: -25px;
+        top: 0;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background-color: #0ea5e9;
+        border: 3px solid white;
+      }
+      
+      .dark .timeline-item::before {
+        border-color: #1e293b;
+      }
+      
+      .typing-container {
+        display: inline-block;
+        overflow: hidden;
+        white-space: nowrap;
+        border-right: 3px solid #0ea5e9;
+        animation: typewriter 4s steps(40) 1s 1 normal both, blink 0.75s step-end infinite;
+      }
+      
+      /* Dark mode styles */
+      .dark {
+        background-color: #0f172a;
+        color: #f1f5f9;
+      }
+      
+      .dark .bg-white {
+        background-color: #1e293b;
+      }
+      
+      .dark .text-gray-900 {
+        color: #f1f5f9;
+      }
+      
+      .dark .text-gray-700 {
+        color: #cbd5e1;
+      }
+      
+      .dark .bg-gray-100 {
+        background-color: #1e293b;
+      }
+      
+      .dark .bg-gray-50 {
+        background-color: #334155;
+      }
+      
+      .dark .shadow {
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+      }
+      
+      /* Scroll to top button */
+      #scrollToTop {
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s, visibility 0.3s;
+      }
+      
+      #scrollToTop.visible {
+        opacity: 1;
+        visibility: visible;
+      }
+    </style>
   </head>
 
-  <body class="bg-gray-100 text-gray-900">
-    <!-- HEADER / HERO SECTION -->
-    <header class="bg-blue-600 text-white py-16">
-      <div class="max-w-5xl mx-auto text-center px-4">
-        <h1 class="text-4xl font-bold">Shubham Kumar Chaudhary</h1>
-        <p class="text-xl mt-2">Full Stack Developer | Laravel Developer</p>
+  <body class="bg-gray-50 text-gray-900 font-body">
+    <!-- Dark/Light Mode Toggle -->
+    <button id="themeToggle" class="fixed top-6 right-6 z-50 p-3 rounded-full bg-white shadow-lg dark:bg-slate-800">
+      <svg id="sunIcon" class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+      </svg>
+      <svg id="moonIcon" class="w-5 h-5 text-blue-300 hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+      </svg>
+    </button>
 
-        <div class="mt-6 flex justify-center space-x-4">
-          <a
-            href="tel:+9779819096819"
-            class="bg-white text-blue-600 px-4 py-2 rounded-md font-semibold hover:bg-gray-200"
-            >Call Me</a
-          >
-          <a
-            href="mailto:chaudharyshubhamshu@gmail.com"
-            class="bg-white text-blue-600 px-4 py-2 rounded-md font-semibold hover:bg-gray-200"
-            >Email Me</a
-          >
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="fixed bottom-6 right-6 z-50 p-3 rounded-full bg-primary-600 text-white shadow-lg hover:bg-primary-700 transition-colors">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+      </svg>
+    </button>
+
+    <!-- HEADER / NAVBAR -->
+    <header class="sticky top-0 z-40 glassmorphism shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center py-4">
+          <!-- Logo -->
+          <div class="flex items-center space-x-2">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center">
+              <span class="text-white font-bold">SC</span>
+            </div>
+            <span class="font-heading font-bold text-xl text-primary-700 dark:text-primary-300">Shubham Chaudhary</span>
+          </div>
+          
+          <!-- Desktop Navigation -->
+          <nav class="hidden md:flex space-x-8">
+            <a href="#home" class="font-medium text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-300 transition-colors">Home</a>
+            <a href="#about" class="font-medium text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-300 transition-colors">About</a>
+            <a href="#skills" class="font-medium text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-300 transition-colors">Skills</a>
+            <a href="#projects" class="font-medium text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-300 transition-colors">Projects</a>
+            <a href="#experience" class="font-medium text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-300 transition-colors">Experience</a>
+            <a href="#contact" class="font-medium text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-300 transition-colors">Contact</a>
+          </nav>
+          
+          <!-- CTA Button -->
+          <a href="#contact" class="hidden md:inline-block bg-primary-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-primary-700 transition-colors shadow-md">
+            Hire Me
+          </a>
+          
+          <!-- Mobile Menu Button -->
+          <button id="mobileMenuButton" class="md:hidden text-gray-700 dark:text-gray-300">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden py-4 border-t border-gray-200 dark:border-gray-700">
+          <div class="flex flex-col space-y-4">
+            <a href="#home" class="font-medium text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-300 transition-colors">Home</a>
+            <a href="#about" class="font-medium text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-300 transition-colors">About</a>
+            <a href="#skills" class="font-medium text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-300 transition-colors">Skills</a>
+            <a href="#projects" class="font-medium text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-300 transition-colors">Projects</a>
+            <a href="#experience" class="font-medium text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-300 transition-colors">Experience</a>
+            <a href="#contact" class="font-medium text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-300 transition-colors">Contact</a>
+            <a href="#contact" class="bg-primary-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-primary-700 transition-colors text-center">
+              Hire Me
+            </a>
+          </div>
         </div>
       </div>
     </header>
 
+    <!-- HERO SECTION -->
+    <section id="home" class="relative overflow-hidden pt-16 md:pt-24 pb-20 md:pb-32">
+      <!-- Animated Background Elements -->
+      <div class="absolute top-10 left-10 w-72 h-72 bg-primary-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"></div>
+      <div class="absolute bottom-10 right-10 w-72 h-72 bg-accent-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float" style="animation-delay: 2s"></div>
+      
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center">
+          <h1 class="text-4xl md:text-6xl font-heading font-bold mb-4 animate-fade-in">
+            Hi, I'm <span class="text-primary-600 dark:text-primary-400">Shubham Chaudhary</span>
+          </h1>
+          <div class="h-12 md:h-16 mb-6">
+            <h2 class="text-2xl md:text-4xl font-heading font-semibold text-gray-700 dark:text-gray-300">
+              <span class="typing-container">Laravel Full-Stack Developer</span>
+            </h2>
+          </div>
+          <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-10 animate-slide-up" style="animation-delay: 0.2s">
+            I build scalable web applications with Laravel, PHP, MySQL, and modern JavaScript frameworks. 
+            Passionate about clean code, user experience, and solving real-world problems.
+          </p>
+          
+          <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6 animate-slide-up" style="animation-delay: 0.4s">
+            <a href="#projects" class="bg-primary-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+              View Projects
+            </a>
+            <a href="#contact" class="bg-white text-primary-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 dark:bg-slate-800 dark:text-primary-300 dark:hover:bg-slate-700 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+              Hire Me
+            </a>
+          </div>
+        </div>
+        
+        <!-- Stats -->
+        <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto animate-slide-up" style="animation-delay: 0.6s">
+          <div class="glassmorphism p-6 rounded-xl text-center">
+            <div class="text-3xl font-bold text-primary-600 dark:text-primary-400">10+</div>
+            <div class="text-gray-600 dark:text-gray-400">Projects</div>
+          </div>
+          <div class="glassmorphism p-6 rounded-xl text-center">
+            <div class="text-3xl font-bold text-primary-600 dark:text-primary-400">3+</div>
+            <div class="text-gray-600 dark:text-gray-400">Years Experience</div>
+          </div>
+          <div class="glassmorphism p-6 rounded-xl text-center">
+            <div class="text-3xl font-bold text-primary-600 dark:text-primary-400">100%</div>
+            <div class="text-gray-600 dark:text-gray-400">Client Satisfaction</div>
+          </div>
+          <div class="glassmorphism p-6 rounded-xl text-center">
+            <div class="text-3xl font-bold text-primary-600 dark:text-primary-400">15+</div>
+            <div class="text-gray-600 dark:text-gray-400">Technologies</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ABOUT SECTION -->
-    <section class="py-16">
-      <div class="max-w-5xl mx-auto px-4">
-        <h2 class="text-3xl font-bold border-l-4 border-blue-600 pl-3 mb-5">
-          About Me
-        </h2>
-        <p class="text-lg leading-relaxed">
-          I am a Junior Laravel Developer with hands-on experience in building
-          dynamic web applications using PHP, Laravel, MySQL, HTML, CSS,
-          JavaScript, and Blade templates. I have worked on CRUD operations,
-          server-side validation, authentication, and integrating frontend with
-          backend logic. I enjoy solving problems, learning new technologies,
-          and working both independently and within a team.
-        </p>
+    <section id="about" class="py-16 md:py-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">
+            About <span class="text-primary-600 dark:text-primary-400">Me</span>
+          </h2>
+          <div class="h-1 w-20 bg-primary-600 mx-auto rounded"></div>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div class="animate-slide-up">
+            <h3 class="text-2xl font-heading font-semibold mb-6">Professional Journey</h3>
+            <p class="text-lg leading-relaxed mb-6 text-gray-700 dark:text-gray-300">
+              I am a passionate Laravel Full-Stack Developer with hands-on experience in building 
+              dynamic, scalable web applications. I specialize in PHP, Laravel, MySQL, and modern 
+              frontend technologies, creating solutions that solve real-world problems.
+            </p>
+            <p class="text-lg leading-relaxed mb-6 text-gray-700 dark:text-gray-300">
+              My expertise includes developing robust backend architectures with Laravel's MVC pattern, 
+              designing intuitive user interfaces with Blade and JavaScript, and integrating various 
+              APIs and third-party services.
+            </p>
+            <div class="flex space-x-4">
+              <a href="#contact" class="bg-primary-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors">
+                Get In Touch
+              </a>
+              <a href="#" class="bg-gray-200 text-gray-800 px-6 py-3 rounded-lg font-semibold hover:bg-gray-300 dark:bg-slate-700 dark:text-gray-200 dark:hover:bg-slate-600 transition-colors">
+                Download CV
+              </a>
+            </div>
+          </div>
+          
+          <div class="grid grid-cols-2 gap-4 animate-slide-up" style="animation-delay: 0.2s">
+            <div class="glassmorphism p-6 rounded-xl">
+              <div class="text-4xl font-bold text-primary-600 dark:text-primary-400 mb-2">Backend</div>
+              <p class="text-gray-600 dark:text-gray-400">Laravel, PHP, MySQL, APIs</p>
+            </div>
+            <div class="glassmorphism p-6 rounded-xl">
+              <div class="text-4xl font-bold text-primary-600 dark:text-primary-400 mb-2">Frontend</div>
+              <p class="text-gray-600 dark:text-gray-400">Blade, JavaScript, Tailwind</p>
+            </div>
+            <div class="glassmorphism p-6 rounded-xl">
+              <div class="text-4xl font-bold text-primary-600 dark:text-primary-400 mb-2">Tools</div>
+              <p class="text-gray-600 dark:text-gray-400">Git, Docker, Composer</p>
+            </div>
+            <div class="glassmorphism p-6 rounded-xl">
+              <div class="text-4xl font-bold text-primary-600 dark:text-primary-400 mb-2">Skills</div>
+              <p class="text-gray-600 dark:text-gray-400">Problem Solving, Teamwork</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- SKILLS SECTION -->
-    <section class="bg-white py-16">
-      <div class="max-w-5xl mx-auto px-4">
-        <h2 class="text-3xl font-bold border-l-4 border-blue-600 pl-3 mb-5">
-          Skills
-        </h2>
-
-        <div class="grid md:grid-cols-2 gap-6 text-lg">
-          <ul class="list-disc ml-6 space-y-2">
-            <li>Laravel Framework (MVC, CRUD, Validation, Routing)</li>
-            <li>PHP & MySQL – Queries, DB Design</li>
-            <li>HTML5, CSS3, JavaScript, Blade</li>
-            <li>Git & GitHub Version Control</li>
-          </ul>
-          <ul class="list-disc ml-6 space-y-2">
-            <li>Database Management & SQL Queries</li>
-            <li>Form Handling & Server-Side Validation</li>
-            <li>Frontend–Backend Integration</li>
-            <li>Problem Solving & Debugging</li>
-          </ul>
+    <section id="skills" class="py-16 md:py-24 bg-gray-100 dark:bg-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">
+            My <span class="text-primary-600 dark:text-primary-400">Skills</span>
+          </h2>
+          <div class="h-1 w-20 bg-primary-600 mx-auto rounded"></div>
+          <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mt-4">
+            A comprehensive set of technical skills I've developed through years of professional experience
+          </p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-12">
+          <!-- Backend Skills -->
+          <div class="animate-slide-up">
+            <h3 class="text-2xl font-heading font-semibold mb-6 flex items-center">
+              <div class="w-10 h-10 rounded-lg bg-primary-100 dark:bg-primary-900 flex items-center justify-center mr-3">
+                <svg class="w-5 h-5 text-primary-600 dark:text-primary-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              Backend Development
+            </h3>
+            
+            <div class="space-y-6">
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span class="font-medium">Laravel Framework</span>
+                  <span class="font-medium text-primary-600 dark:text-primary-400">95%</span>
+                </div>
+                <div class="skill-progress-bar bg-gray-200 dark:bg-gray-700">
+                  <div class="skill-progress-fill bg-primary-600" style="width: 95%"></div>
+                </div>
+              </div>
+              
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span class="font-medium">PHP & MySQL</span>
+                  <span class="font-medium text-primary-600 dark:text-primary-400">90%</span>
+                </div>
+                <div class="skill-progress-bar bg-gray-200 dark:bg-gray-700">
+                  <div class="skill-progress-fill bg-primary-600" style="width: 90%"></div>
+                </div>
+              </div>
+              
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span class="font-medium">RESTful APIs</span>
+                  <span class="font-medium text-primary-600 dark:text-primary-400">85%</span>
+                </div>
+                <div class="skill-progress-bar bg-gray-200 dark:bg-gray-700">
+                  <div class="skill-progress-fill bg-primary-600" style="width: 85%"></div>
+                </div>
+              </div>
+              
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span class="font-medium">Server Management</span>
+                  <span class="font-medium text-primary-600 dark:text-primary-400">80%</span>
+                </div>
+                <div class="skill-progress-bar bg-gray-200 dark:bg-gray-700">
+                  <div class="skill-progress-fill bg-primary-600" style="width: 80%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Frontend Skills -->
+          <div class="animate-slide-up" style="animation-delay: 0.2s">
+            <h3 class="text-2xl font-heading font-semibold mb-6 flex items-center">
+              <div class="w-10 h-10 rounded-lg bg-primary-100 dark:bg-primary-900 flex items-center justify-center mr-3">
+                <svg class="w-5 h-5 text-primary-600 dark:text-primary-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M3 5a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2h-2.22l.123.489.804.804A1 1 0 0113 18H7a1 1 0 01-.707-1.707l.804-.804L7.22 15H5a2 2 0 01-2-2V5zm5.771 7H5V5h10v7H8.771z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              Frontend Development
+            </h3>
+            
+            <div class="space-y-6">
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span class="font-medium">HTML5, CSS3, JavaScript</span>
+                  <span class="font-medium text-primary-600 dark:text-primary-400">92%</span>
+                </div>
+                <div class="skill-progress-bar bg-gray-200 dark:bg-gray-700">
+                  <div class="skill-progress-fill bg-primary-600" style="width: 92%"></div>
+                </div>
+              </div>
+              
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span class="font-medium">Tailwind CSS</span>
+                  <span class="font-medium text-primary-600 dark:text-primary-400">90%</span>
+                </div>
+                <div class="skill-progress-bar bg-gray-200 dark:bg-gray-700">
+                  <div class="skill-progress-fill bg-primary-600" style="width: 90%"></div>
+                </div>
+              </div>
+              
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span class="font-medium">Blade Templates</span>
+                  <span class="font-medium text-primary-600 dark:text-primary-400">88%</span>
+                </div>
+                <div class="skill-progress-bar bg-gray-200 dark:bg-gray-700">
+                  <div class="skill-progress-fill bg-primary-600" style="width: 88%"></div>
+                </div>
+              </div>
+              
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span class="font-medium">Alpine.js / Livewire</span>
+                  <span class="font-medium text-primary-600 dark:text-primary-400">75%</span>
+                </div>
+                <div class="skill-progress-bar bg-gray-200 dark:bg-gray-700">
+                  <div class="skill-progress-fill bg-primary-600" style="width: 75%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Tools & Technologies -->
+        <div class="mt-16 animate-slide-up" style="animation-delay: 0.4s">
+          <h3 class="text-2xl font-heading font-semibold mb-8 text-center">Tools & Technologies</h3>
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6">
+            <div class="glassmorphism p-4 rounded-xl text-center hover:shadow-lg transition-shadow">
+              <div class="text-2xl mb-2">⚙️</div>
+              <div class="font-medium">Git & GitHub</div>
+            </div>
+            <div class="glassmorphism p-4 rounded-xl text-center hover:shadow-lg transition-shadow">
+              <div class="text-2xl mb-2">🐳</div>
+              <div class="font-medium">Docker</div>
+            </div>
+            <div class="glassmorphism p-4 rounded-xl text-center hover:shadow-lg transition-shadow">
+              <div class="text-2xl mb-2">📦</div>
+              <div class="font-medium">Composer</div>
+            </div>
+            <div class="glassmorphism p-4 rounded-xl text-center hover:shadow-lg transition-shadow">
+              <div class="text-2xl mb-2">🚀</div>
+              <div class="font-medium">Vite</div>
+            </div>
+            <div class="glassmorphism p-4 rounded-xl text-center hover:shadow-lg transition-shadow">
+              <div class="text-2xl mb-2">🔧</div>
+              <div class="font-medium">VS Code</div>
+            </div>
+            <div class="glassmorphism p-4 rounded-xl text-center hover:shadow-lg transition-shadow">
+              <div class="text-2xl mb-2">☁️</div>
+              <div class="font-medium">AWS / DigitalOcean</div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- PROJECTS SECTION -->
-    <section class="py-16 bg-gray-50">
-      <div class="max-w-5xl mx-auto px-4">
-        <h2 class="text-3xl font-bold border-l-4 border-blue-600 pl-3 mb-8">
-          Projects
-        </h2>
-
-        <div class="space-y-8">
-          <!-- Passion Chasers -->
-          <div class="bg-white p-6 rounded-lg shadow">
-            <h3 class="text-2xl font-semibold">Passion Chasers</h3>
-            <p class="mt-2">
-              Designed and developed the official website for Passion Chasers
-              Pvt. Ltd., including dynamic vacancy postings and online job
-              application modules. Used Laravel, PHP, MySQL, HTML, CSS, and JS.
-            </p>
-            <a
-              href="https://passionchasers.com"
-              target="_blank"
-              class="text-blue-600 font-semibold hover:underline mt-2 inline-block"
-              >Visit Website →</a
-            >
+    <section id="projects" class="py-16 md:py-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">
+            Featured <span class="text-primary-600 dark:text-primary-400">Projects</span>
+          </h2>
+          <div class="h-1 w-20 bg-primary-600 mx-auto rounded"></div>
+          <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mt-4">
+            Here are some of my recent projects showcasing my Laravel expertise
+          </p>
+        </div>
+        
+        <!-- Project Filter -->
+        <div class="flex flex-wrap justify-center gap-2 mb-12">
+          <button class="project-filter active px-4 py-2 rounded-lg bg-primary-600 text-white font-medium" data-filter="all">All</button>
+          <button class="project-filter px-4 py-2 rounded-lg bg-gray-200 dark:bg-slate-700 hover:bg-gray-300 dark:hover:bg-slate-600 font-medium transition-colors" data-filter="laravel">Laravel</button>
+          <button class="project-filter px-4 py-2 rounded-lg bg-gray-200 dark:bg-slate-700 hover:bg-gray-300 dark:hover:bg-slate-600 font-medium transition-colors" data-filter="fullstack">Full Stack</button>
+          <button class="project-filter px-4 py-2 rounded-lg bg-gray-200 dark:bg-slate-700 hover:bg-gray-300 dark:hover:bg-slate-600 font-medium transition-colors" data-filter="management">Management Systems</button>
+        </div>
+        
+        <!-- Projects Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Project 1 -->
+          <div class="project-card bg-white dark:bg-slate-800 rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 animate-slide-up" data-category="laravel,fullstack">
+            <div class="h-48 bg-gradient-to-r from-primary-500 to-accent-500 flex items-center justify-center">
+              <div class="text-4xl">🏨</div>
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-4">
+                <h3 class="text-xl font-heading font-bold">Hotel Management System</h3>
+                <span class="px-3 py-1 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 text-sm rounded-full">Laravel</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-400 mb-6">
+                Full hotel system with room reservation, restaurant order tracking, customer management, and automated billing.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="px-3 py-1 bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 text-sm rounded-full">PHP</span>
+                <span class="px-3 py-1 bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 text-sm rounded-full">Laravel</span>
+                <span class="px-3 py-1 bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 text-sm rounded-full">MySQL</span>
+                <span class="px-3 py-1 bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 text-sm rounded-full">Tailwind</span>
+              </div>
+              <div class="flex space-x-4">
+                <a href="https://hms.passionchasers.com" target="_blank" class="flex-1 bg-primary-600 text-white py-2 rounded-lg text-center font-medium hover:bg-primary-700 transition-colors">
+                  Live Demo
+                </a>
+                <a href="#" class="flex-1 border border-gray-300 dark:border-slate-600 text-gray-700 dark:text-gray-300 py-2 rounded-lg text-center font-medium hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors">
+                  Details
+                </a>
+              </div>
+            </div>
           </div>
-
-          <!-- HMS -->
-          <div class="bg-white p-6 rounded-lg shadow">
-            <h3 class="text-2xl font-semibold">Hotel Management System</h3>
-            <p class="mt-2">
-              Built a full hotel system with room reservation, restaurant order
-              tracking, customer management, and billing system including
-              charges calculation.
-            </p>
-            <a
-              href="https://hms.passionchasers.com"
-              target="_blank"
-              class="text-blue-600 font-semibold hover:underline mt-2 inline-block"
-              >Visit Website →</a
-            >
+          
+          <!-- Project 2 -->
+          <div class="project-card bg-white dark:bg-slate-800 rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 animate-slide-up" style="animation-delay: 0.1s" data-category="laravel,management">
+            <div class="h-48 bg-gradient-to-r from-accent-500 to-blue-500 flex items-center justify-center">
+              <div class="text-4xl">🏥</div>
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-4">
+                <h3 class="text-xl font-heading font-bold">MediHealth</h3>
+                <span class="px-3 py-1 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 text-sm rounded-full">Full Stack</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-400 mb-6">
+                Healthcare web application for appointment booking, medical history, and doctor scheduling with multi-hospital support.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="px-3 py-1 bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 text-sm rounded-full">Laravel</span>
+                <span class="px-3 py-1 bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 text-sm rounded-full">MySQL</span>
+                <span class="px-3 py-1 bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 text-sm rounded-full">JavaScript</span>
+                <span class="px-3 py-1 bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 text-sm rounded-full">PHPMailer</span>
+              </div>
+              <div class="flex space-x-4">
+                <a href="https://github.com/shubhamchaudhary81/MediHealth.git" target="_blank" class="flex-1 bg-primary-600 text-white py-2 rounded-lg text-center font-medium hover:bg-primary-700 transition-colors">
+                  GitHub
+                </a>
+                <a href="#" class="flex-1 border border-gray-300 dark:border-slate-600 text-gray-700 dark:text-gray-300 py-2 rounded-lg text-center font-medium hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors">
+                  Details
+                </a>
+              </div>
+            </div>
           </div>
+          
+          <!-- Project 3 -->
+          <div class="project-card bg-white dark:bg-slate-800 rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 animate-slide-up" style="animation-delay: 0.2s" data-category="laravel,fullstack">
+            <div class="h-48 bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
+              <div class="text-4xl">💼</div>
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-4">
+                <h3 class="text-xl font-heading font-bold">Passion Chasers</h3>
+                <span class="px-3 py-1 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 text-sm rounded-full">Laravel</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-400 mb-6">
+                Official website with dynamic vacancy postings and online job application modules for Passion Chasers Pvt. Ltd.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="px-3 py-1 bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 text-sm rounded-full">Laravel</span>
+                <span class="px-3 py-1 bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 text-sm rounded-full">Blade</span>
+                <span class="px-3 py-1 bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 text-sm rounded-full">MySQL</span>
+                <span class="px-3 py-1 bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 text-sm rounded-full">JavaScript</span>
+              </div>
+              <div class="flex space-x-4">
+                <a href="https://passionchasers.com" target="_blank" class="flex-1 bg-primary-600 text-white py-2 rounded-lg text-center font-medium hover:bg-primary-700 transition-colors">
+                  Live Demo
+                </a>
+                <a href="#" class="flex-1 border border-gray-300 dark:border-slate-600 text-gray-700 dark:text-gray-300 py-2 rounded-lg text-center font-medium hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors">
+                  Details
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="text-center mt-12">
+          <a href="#" class="inline-block border-2 border-primary-600 text-primary-600 dark:text-primary-400 dark:border-primary-400 px-8 py-3 rounded-lg font-semibold hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors">
+            View All Projects
+          </a>
+        </div>
+      </div>
+    </section>
 
-          <!-- MediHealth -->
-          <div class="bg-white p-6 rounded-lg shadow">
-            <h3 class="text-2xl font-semibold">MediHealth</h3>
-            <p class="mt-2">
-              A healthcare web application for appointment booking, medical
-              history, and doctor scheduling management. Includes multi-hospital
-              support and PHPMailer email notifications.
-            </p>
-            <a
-              href="https://github.com/shubhamchaudhary81/MediHealth.git"
-              target="_blank"
-              class="text-blue-600 font-semibold hover:underline mt-2 inline-block"
-              >View on GitHub →</a
-            >
+    <!-- EXPERIENCE SECTION -->
+    <section id="experience" class="py-16 md:py-24 bg-gray-100 dark:bg-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">
+            My <span class="text-primary-600 dark:text-primary-400">Experience</span>
+          </h2>
+          <div class="h-1 w-20 bg-primary-600 mx-auto rounded"></div>
+          <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mt-4">
+            Professional journey and milestones in my development career
+          </p>
+        </div>
+        
+        <div class="max-w-3xl mx-auto">
+          <!-- Timeline -->
+          <div class="relative border-l-2 border-primary-300 dark:border-primary-700 ml-4 md:ml-6">
+            <!-- Experience 1 -->
+            <div class="mb-10 ml-8 timeline-item animate-slide-up">
+              <div class="absolute -left-11 mt-1">
+                <div class="w-8 h-8 rounded-full bg-primary-600 flex items-center justify-center">
+                  <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                    <path d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z"></path>
+                  </svg>
+                </div>
+              </div>
+              <div class="glassmorphism p-6 rounded-xl">
+                <h3 class="text-xl font-heading font-bold mb-2">Junior Web Developer</h3>
+                <p class="text-primary-600 dark:text-primary-400 font-medium mb-3">Passion Chasers Pvt. Ltd. • July 2025 – Present</p>
+                <ul class="list-disc ml-5 space-y-2 text-gray-700 dark:text-gray-300">
+                  <li>Developed Laravel applications with CRUD operations, validation & database management</li>
+                  <li>Worked on routes, controllers, views & MVC architecture implementation</li>
+                  <li>Integrated UI with backend logic using Blade templates and JavaScript</li>
+                  <li>Handled debugging, testing & deployment tasks for production applications</li>
+                  <li>Collaborated using Git/GitHub for version control and team workflows</li>
+                </ul>
+              </div>
+            </div>
+            
+            <!-- Experience 2 -->
+            <div class="mb-10 ml-8 timeline-item animate-slide-up" style="animation-delay: 0.2s">
+              <div class="absolute -left-11 mt-1">
+                <div class="w-8 h-8 rounded-full bg-primary-600 flex items-center justify-center">
+                  <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"></path>
+                  </svg>
+                </div>
+              </div>
+              <div class="glassmorphism p-6 rounded-xl">
+                <h3 class="text-xl font-heading font-bold mb-2">Laravel Developer Training</h3>
+                <p class="text-primary-600 dark:text-primary-400 font-medium mb-3">Self-Directed Learning • 2023 – 2025</p>
+                <ul class="list-disc ml-5 space-y-2 text-gray-700 dark:text-gray-300">
+                  <li>Mastered Laravel framework including MVC, Eloquent ORM, migrations, and seeding</li>
+                  <li>Built multiple full-stack applications with authentication and authorization</li>
+                  <li>Learned frontend integration with Blade, JavaScript, and AJAX for dynamic interfaces</li>
+                  <li>Gained expertise in database design, query optimization, and RESTful API development</li>
+                  <li>Implemented deployment strategies and server management for Laravel applications</li>
+                </ul>
+              </div>
+            </div>
+            
+            <!-- Experience 3 -->
+            <div class="ml-8 timeline-item animate-slide-up" style="animation-delay: 0.4s">
+              <div class="absolute -left-11 mt-1">
+                <div class="w-8 h-8 rounded-full bg-primary-600 flex items-center justify-center">
+                  <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+              </div>
+              <div class="glassmorphism p-6 rounded-xl">
+                <h3 class="text-xl font-heading font-bold mb-2">Freelance Web Developer</h3>
+                <p class="text-primary-600 dark:text-primary-400 font-medium mb-3">Various Clients • 2022 – 2023</p>
+                <ul class="list-disc ml-5 space-y-2 text-gray-700 dark:text-gray-300">
+                  <li>Developed custom web applications for small businesses and startups</li>
+                  <li>Created responsive websites with PHP, HTML, CSS, and JavaScript</li>
+                  <li>Implemented content management systems and e-commerce solutions</li>
+                  <li>Provided website maintenance, optimization, and hosting support</li>
+                  <li>Gained client communication and project management experience</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- EXPERIENCE -->
-    <section class="py-16">
-      <div class="max-w-5xl mx-auto px-4">
-        <h2 class="text-3xl font-bold border-l-4 border-blue-600 pl-3 mb-5">
-          Experience
-        </h2>
-
-        <div class="bg-white p-6 rounded-lg shadow text-lg">
-          <h3 class="text-2xl font-semibold">
-            Junior Web Developer – Passion Chasers Pvt. Ltd.
-          </h3>
-          <p class="text-gray-700">July 2025 – Present</p>
-
-          <ul class="list-disc ml-6 mt-3 space-y-2">
-            <li>
-              Developed Laravel applications with CRUD, validation & DB
-              management.
-            </li>
-            <li>Worked on routes, controllers, views & MVC structure.</li>
-            <li>Integrated UI with backend using Blade.</li>
-            <li>Handled debugging, testing & deployment tasks.</li>
-            <li>Collaborated using Git/GitHub for version control.</li>
-          </ul>
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-16 md:py-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">
+            Get In <span class="text-primary-600 dark:text-primary-400">Touch</span>
+          </h2>
+          <div class="h-1 w-20 bg-primary-600 mx-auto rounded"></div>
+          <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mt-4">
+            Have a project in mind? Let's discuss how we can work together to bring your ideas to life.
+          </p>
         </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section class="py-16 bg-blue-600 text-white">
-      <div class="max-w-5xl mx-auto px-4 text-center">
-        <h2 class="text-3xl font-bold mb-4">Contact Me</h2>
-
-        <p class="text-lg">Kathmandu, Nepal</p>
-        <p class="text-lg">
-          Phone:
-          <a href="tel:+9779819096819" class="underline">+977 9819096819</a>
-        </p>
-        <p class="text-lg">
-          Email:
-          <a href="mailto:chaudharyshubhamshu@gmail.com" class="underline"
-            >chaudharyshubhamshu@gmail.com</a
-          >
-        </p>
-
-        <div class="mt-4 space-x-4">
-          <a
-            href="https://linkedin.com/in/shubham-chaudhary81"
-            target="_blank"
-            class="underline"
-            >LinkedIn</a
-          >
-          <a
-            href="https://github.com/shubhamchaudhary81"
-            target="_blank"
-            class="underline"
-            >GitHub</a
-          >
+        
+        <div class="grid md:grid-cols-2 gap-12">
+          <!-- Contact Form -->
+          <div class="animate-slide-up">
+            <div class="glassmorphism p-8 rounded-2xl">
+              <h3 class="text-2xl font-heading font-bold mb-6">Send Me a Message</h3>
+              
+              <form id="contactForm">
+                <div class="mb-6">
+                  <label for="name" class="block text-gray-700 dark:text-gray-300 mb-2">Your Name</label>
+                  <input type="text" id="name" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-primary-500" placeholder="John Doe" required>
+                </div>
+                
+                <div class="mb-6">
+                  <label for="email" class="block text-gray-700 dark:text-gray-300 mb-2">Email Address</label>
+                  <input type="email" id="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-primary-500" placeholder="john@example.com" required>
+                </div>
+                
+                <div class="mb-6">
+                  <label for="subject" class="block text-gray-700 dark:text-gray-300 mb-2">Subject</label>
+                  <input type="text" id="subject" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-primary-500" placeholder="Project Inquiry" required>
+                </div>
+                
+                <div class="mb-6">
+                  <label for="message" class="block text-gray-700 dark:text-gray-300 mb-2">Your Message</label>
+                  <textarea id="message" rows="5" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-primary-500" placeholder="Tell me about your project..." required></textarea>
+                </div>
+                
+                <button type="submit" class="w-full bg-primary-600 text-white py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors shadow-md">
+                  Send Message
+                </button>
+                
+                <div id="formMessage" class="mt-4 text-center hidden"></div>
+              </form>
+            </div>
+          </div>
+          
+          <!-- Contact Info -->
+          <div class="animate-slide-up" style="animation-delay: 0.2s">
+            <div class="mb-8">
+              <h3 class="text-2xl font-heading font-bold mb-6">Contact Information</h3>
+              <p class="text-gray-700 dark:text-gray-300 mb-6">
+                Feel free to reach out to discuss potential collaborations, job opportunities, or just to say hello!
+              </p>
+              
+              <div class="space-y-6">
+                <div class="flex items-center">
+                  <div class="w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900 flex items-center justify-center mr-4">
+                    <svg class="w-6 h-6 text-primary-600 dark:text-primary-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="font-semibold">Location</div>
+                    <div class="text-gray-600 dark:text-gray-400">Kathmandu, Nepal</div>
+                  </div>
+                </div>
+                
+                <div class="flex items-center">
+                  <div class="w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900 flex items-center justify-center mr-4">
+                    <svg class="w-6 h-6 text-primary-600 dark:text-primary-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="font-semibold">Phone</div>
+                    <a href="tel:+9779819096819" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">+977 9819096819</a>
+                  </div>
+                </div>
+                
+                <div class="flex items-center">
+                  <div class="w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900 flex items-center justify-center mr-4">
+                    <svg class="w-6 h-6 text-primary-600 dark:text-primary-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                      <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="font-semibold">Email</div>
+                    <a href="mailto:chaudharyshubhamshu@gmail.com" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">chaudharyshubhamshu@gmail.com</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Social Links -->
+            <div>
+              <h3 class="text-2xl font-heading font-bold mb-6">Connect With Me</h3>
+              <div class="flex space-x-4">
+                <a href="https://linkedin.com/in/shubham-chaudhary81" target="_blank" class="w-12 h-12 rounded-lg bg-gray-200 dark:bg-slate-700 flex items-center justify-center hover:bg-primary-600 hover:text-white dark:hover:bg-primary-600 transition-colors">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z" clip-rule="evenodd"></path>
+                  </svg>
+                </a>
+                <a href="https://github.com/shubhamchaudhary81" target="_blank" class="w-12 h-12 rounded-lg bg-gray-200 dark:bg-slate-700 flex items-center justify-center hover:bg-primary-600 hover:text-white dark:hover:bg-primary-600 transition-colors">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z" clip-rule="evenodd"></path>
+                  </svg>
+                </a>
+                <a href="#" class="w-12 h-12 rounded-lg bg-gray-200 dark:bg-slate-700 flex items-center justify-center hover:bg-primary-600 hover:text-white dark:hover:bg-primary-600 transition-colors">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path>
+                    <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path>
+                  </svg>
+                </a>
+                <a href="#" class="w-12 h-12 rounded-lg bg-gray-200 dark:bg-slate-700 flex items-center justify-center hover:bg-primary-600 hover:text-white dark:hover:bg-primary-600 transition-colors">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 005 10a6 6 0 0112 0c0 .459-.031.908-.086 1.333A5 5 0 0010 11z" clip-rule="evenodd"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="py-6 text-center bg-gray-800 text-white">
-      © 2026 Shubham Kumar Chaudhary — All Rights Reserved
+    <footer class="py-8 bg-gray-900 text-gray-300">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-4 md:mb-0">
+            <div class="flex items-center space-x-2">
+              <div class="w-8 h-8 rounded-full bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center">
+                <span class="text-white font-bold text-sm">SC</span>
+              </div>
+              <span class="font-heading font-bold text-lg">Shubham Chaudhary</span>
+            </div>
+            <p class="mt-2 text-sm">Laravel Full-Stack Developer</p>
+          </div>
+          
+          <div class="flex space-x-6 mb-4 md:mb-0">
+            <a href="#home" class="hover:text-primary-400 transition-colors">Home</a>
+            <a href="#about" class="hover:text-primary-400 transition-colors">About</a>
+            <a href="#projects" class="hover:text-primary-400 transition-colors">Projects</a>
+            <a href="#contact" class="hover:text-primary-400 transition-colors">Contact</a>
+          </div>
+          
+          <div class="text-sm">
+            © 2026 Shubham Kumar Chaudhary — All Rights Reserved
+          </div>
+        </div>
+      </div>
     </footer>
+
+    <!-- JavaScript for interactive features -->
+    <script>
+      // DOM Elements
+      const themeToggle = document.getElementById('themeToggle');
+      const sunIcon = document.getElementById('sunIcon');
+      const moonIcon = document.getElementById('moonIcon');
+      const mobileMenuButton = document.getElementById('mobileMenuButton');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const scrollToTopButton = document.getElementById('scrollToTop');
+      const contactForm = document.getElementById('contactForm');
+      const formMessage = document.getElementById('formMessage');
+      const projectFilters = document.querySelectorAll('.project-filter');
+      const projectCards = document.querySelectorAll('.project-card');
+      
+      // Dark/Light Mode Toggle
+      themeToggle.addEventListener('click', () => {
+        document.documentElement.classList.toggle('dark');
+        
+        if (document.documentElement.classList.contains('dark')) {
+          sunIcon.classList.add('hidden');
+          moonIcon.classList.remove('hidden');
+          localStorage.setItem('theme', 'dark');
+        } else {
+          sunIcon.classList.remove('hidden');
+          moonIcon.classList.add('hidden');
+          localStorage.setItem('theme', 'light');
+        }
+      });
+      
+      // Check for saved theme preference
+      if (localStorage.getItem('theme') === 'dark' || 
+          (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+        sunIcon.classList.add('hidden');
+        moonIcon.classList.remove('hidden');
+      } else {
+        sunIcon.classList.remove('hidden');
+        moonIcon.classList.add('hidden');
+      }
+      
+      // Mobile Menu Toggle
+      mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+      
+      // Close mobile menu when clicking a link
+      document.querySelectorAll('#mobileMenu a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+        });
+      });
+      
+      // Scroll to Top Button
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          scrollToTopButton.classList.add('visible');
+        } else {
+          scrollToTopButton.classList.remove('visible');
+        }
+      });
+      
+      scrollToTopButton.addEventListener('click', () => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+      
+      // Project Filtering
+      projectFilters.forEach(filter => {
+        filter.addEventListener('click', () => {
+          // Remove active class from all filters
+          projectFilters.forEach(f => f.classList.remove('active', 'bg-primary-600', 'text-white'));
+          projectFilters.forEach(f => f.classList.add('bg-gray-200', 'dark:bg-slate-700', 'text-gray-800', 'dark:text-gray-300'));
+          
+          // Add active class to clicked filter
+          filter.classList.add('active', 'bg-primary-600', 'text-white');
+          filter.classList.remove('bg-gray-200', 'dark:bg-slate-700', 'text-gray-800', 'dark:text-gray-300');
+          
+          const filterValue = filter.getAttribute('data-filter');
+          
+          // Filter projects
+          projectCards.forEach(card => {
+            const categories = card.getAttribute('data-category').split(',');
+            
+            if (filterValue === 'all' || categories.includes(filterValue)) {
+              card.style.display = 'block';
+              // Trigger animation
+              card.classList.remove('animate-slide-up');
+              void card.offsetWidth; // Trigger reflow
+              card.classList.add('animate-slide-up');
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+      
+      // Contact Form Submission
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // Get form values
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const subject = document.getElementById('subject').value;
+        const message = document.getElementById('message').value;
+        
+        // Simple validation
+        if (!name || !email || !subject || !message) {
+          showFormMessage('Please fill in all fields.', 'error');
+          return;
+        }
+        
+        // Simulate form submission (in a real app, this would be an AJAX call to Laravel backend)
+        showFormMessage('Thank you for your message! I\'ll get back to you soon.', 'success');
+        
+        // Reset form
+        contactForm.reset();
+      });
+      
+      function showFormMessage(text, type) {
+        formMessage.textContent = text;
+        formMessage.className = 'mt-4 text-center';
+        
+        if (type === 'success') {
+          formMessage.classList.add('text-green-600');
+        } else if (type === 'error') {
+          formMessage.classList.add('text-red-600');
+        }
+        
+        formMessage.classList.remove('hidden');
+        
+        // Hide message after 5 seconds
+        setTimeout(() => {
+          formMessage.classList.add('hidden');
+        }, 5000);
+      }
+      
+      // Animate skill bars on scroll
+      function animateSkillBars() {
+        const skillBars = document.querySelectorAll('.skill-progress-fill');
+        
+        skillBars.forEach(bar => {
+          const barPosition = bar.getBoundingClientRect().top;
+          const screenPosition = window.innerHeight / 1.3;
+          
+          if (barPosition < screenPosition) {
+            // Width already set in style attribute, just make it visible
+            bar.style.opacity = '1';
+          }
+        });
+      }
+      
+      // Set initial opacity for skill bars
+      document.querySelectorAll('.skill-progress-fill').forEach(bar => {
+        bar.style.opacity = '0';
+        bar.style.transition = 'width 1.5s ease-in-out, opacity 0.5s ease-in-out';
+      });
+      
+      // Animate skill bars when page loads
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          animateSkillBars();
+        }, 500);
+      });
+      
+      // Animate skill bars on scroll
+      window.addEventListener('scroll', animateSkillBars);
+      
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          if (this.getAttribute('href') === '#') return;
+          
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+    </script>
   </body>
 </html>
