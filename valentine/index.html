@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For my wifey 💕 | Valentine's Day</title>
+  <!-- Tailwind + handwritten fonts + custom rope & animation styles -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(145deg, #fff1f3 0%, #ffe4e8 100%);
+      overflow-x: hidden;
+    }
+    .handwritten {
+      font-family: 'Dancing Script', cursive;
+    }
+
+    /* ===== FLOATING HEARTS BACKGROUND ===== */
+    #floating-hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .heart-float {
+      position: absolute;
+      color: rgba(255, 105, 135, 0.4);
+      font-size: 2rem;
+      user-select: none;
+      animation: floatUp 12s linear infinite;
+      filter: drop-shadow(0 0 8px #ffb7c5);
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(100vh) scale(0.5); opacity: 0.8; }
+      100% { transform: translateY(-10vh) scale(1.4); opacity: 0; }
+    }
+
+    /* ===== SPARKLES ===== */
+    .sparkle {
+      position: fixed;
+      width: 6px;
+      height: 6px;
+      background: #ffd9e2;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 2;
+      box-shadow: 0 0 16px #ff8da1;
+      opacity: 0.5;
+      animation: sparkleGlow 4s infinite alternate;
+    }
+    @keyframes sparkleGlow {
+      0% { opacity: 0.2; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1.8); }
+    }
+
+    /* ===== GLOWING BUTTON ===== */
+    .glow-btn {
+      background: #ff8da1;
+      box-shadow: 0 0 30px #ff6b8b, 0 0 60px #ffb3c6;
+      transition: 0.3s;
+      border: 2px solid white;
+    }
+    .glow-btn:hover {
+      background: #ff6f8f;
+      box-shadow: 0 0 50px #ff3b5c, 0 0 90px #ffa5b9;
+      transform: scale(1.08);
+    }
+
+    /* ===== ROPE-HANGING CARDS ===== */
+    .rope-card {
+      position: relative;
+      background: #fff9fb;
+      border-radius: 30px 30px 30px 5px;
+      padding: 1.5rem 2rem;
+      box-shadow: 0 15px 25px -8px rgba(255, 100, 130, 0.4);
+      border: 2px solid white;
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.5rem;
+      margin-top: 40px;
+    }
+    .rope-card::before {
+      content: '';
+      position: absolute;
+      top: -30px;
+      left: 30px;
+      width: 8px;
+      height: 30px;
+      background: repeating-linear-gradient(45deg, #dba5b0 0px, #dba5b0 4px, #f5c6d0 4px, #f5c6d0 8px);
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transform: rotate(5deg);
+    }
+    .rope-card::after {
+      content: '🪢';
+      position: absolute;
+      top: -42px;
+      left: 20px;
+      font-size: 1.8rem;
+      filter: drop-shadow(2px 4px 4px rgba(0,0,0,0.1));
+      transform: rotate(-10deg);
+    }
+    .rope-card.right {
+      border-radius: 30px 30px 5px 30px;
+    }
+    .rope-card.right::before {
+      left: auto;
+      right: 30px;
+      transform: rotate(-5deg);
+    }
+    .rope-card.right::after {
+      left: auto;
+      right: 20px;
+      transform: rotate(10deg);
+    }
+
+    /* ===== TYPEWRITER ===== */
+    #typewriter-text {
+      display: inline-block;
+      border-right: 4px solid #ff99aa;
+      white-space: nowrap;
+      overflow: hidden;
+      font-size: 2.2rem;
+      width: 0;
+      animation: typing 5s steps(40, end) forwards, blinkCursor 0.8s step-end infinite;
+    }
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+    @keyframes blinkCursor {
+      0%, 100% { border-color: transparent; }
+      50% { border-color: #ff99aa; }
+    }
+
+    /* ===== ROMANTIC LETTER ===== */
+    .love-letter-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(12px);
+      border-radius: 5rem 5rem 3rem 3rem;
+      box-shadow: 0 30px 50px -20px #ff8da1, inset 0 0 50px rgba(255, 255, 255, 0.8);
+      border: 3px solid white;
+      position: relative;
+    }
+    .love-letter-container::before {
+      content: '💌';
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 5rem;
+      filter: drop-shadow(0 10px 15px #ffb6c1);
+      background: white;
+      padding: 0.5rem 2rem;
+      border-radius: 100px;
+      box-shadow: 0 10px 20px #ffb6c1;
+    }
+    .letter-line {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.2rem;
+      color: #b81b3b;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1.2s ease, transform 1.2s ease;
+      margin: 1.8rem 0;
+      text-align: center;
+      line-height: 1.4;
+      text-shadow: 2px 2px 10px rgba(255, 200, 210, 0.8);
+    }
+    .letter-line.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .letter-line:nth-child(odd) {
+      margin-left: 2rem;
+    }
+    .letter-line:nth-child(even) {
+      margin-right: 2rem;
+    }
+    .heart-divider {
+      font-size: 2.5rem;
+      text-align: center;
+      margin: 1rem 0;
+      opacity: 0.7;
+      animation: softPulse 3s infinite;
+    }
+    @keyframes softPulse {
+      0% { opacity: 0.5; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.1); }
+      100% { opacity: 0.5; transform: scale(1); }
+    }
+
+    /* ===== TWO IMAGE SPACES (with actual images) ===== */
+    .image-spaces-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2.5rem;
+      margin: 3rem auto 1rem;
+      max-width: 700px;
+    }
+    .empty-image-frame {
+      width: 200px;
+      height: 200px;
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(4px);
+      border-radius: 40px 40px 20px 20px;
+      border: 4px solid white;
+      box-shadow: 0 20px 30px -10px #ff8da1, inset 0 0 30px rgba(255, 255, 255, 0.8);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease;
+      overflow: hidden;  /* ensures image fits within rounded borders */
+      padding: 0;        /* remove padding for image */
+    }
+    .empty-image-frame:hover {
+      transform: scale(1.05);
+      border-color: #ff8da1;
+      box-shadow: 0 0 40px #ffa5b9;
+    }
+    /* style for the actual images */
+    .frame-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;  /* makes image fill the frame nicely */
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .empty-image-frame:hover .frame-image {
+      transform: scale(1.1);
+    }
+    /* fallback text if image doesn't load (optional) */
+    .image-alt-text {
+      display: none;
+    }
+    @media (max-width: 640px) {
+      .empty-image-frame {
+        width: 150px;
+        height: 150px;
+      }
+    }
+
+    /* ===== BEATING HEART ===== */
+    .beat-heart {
+      display: inline-block;
+      animation: heartbeat 1.2s infinite ease-in-out;
+      filter: drop-shadow(0 0 25px #ff4d6d);
+      font-size: 5rem;
+    }
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      20% { transform: scale(1.25); }
+      35% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+      65% { transform: scale(1); }
+      100% { transform: scale(1); }
+    }
+
+    /* ===== BLACK OVERLAY (for final surprise) ===== */
+    #romantic-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
+      z-index: 9999;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 2s ease;
+      pointer-events: none;
+    }
+    #overlay-content {
+      font-family: 'Dancing Script', cursive;
+    }
+    .sparkling-heart {
+      font-size: 8rem;
+      animation: sparkleHeart 1.5s infinite alternate;
+      filter: drop-shadow(0 0 30px gold) drop-shadow(0 0 60px #ff69b4);
+      margin-bottom: 2rem;
+    }
+    @keyframes sparkleHeart {
+      0% { transform: scale(1); text-shadow: 0 0 20px gold, 0 0 40px #ff1493; }
+      100% { transform: scale(1.2); text-shadow: 0 0 40px #ffb6c1, 0 0 80px #ff69b4; }
+    }
+    .overlay-text {
+      font-size: 4rem;
+      margin: 1rem 0;
+      opacity: 0;
+      animation: fadeInText 2s forwards;
+    }
+    .overlay-text-delay {
+      animation-delay: 2s;
+    }
+    @keyframes fadeInText {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== REVEAL SECTIONS ===== */
+    .section {
+      transition: opacity 1s ease, transform 0.5s ease;
+    }
+    .hidden-section {
+      display: none !important;
+      opacity: 0;
+    }
+
+    /* mobile adjustments */
+    @media (max-width: 640px) {
+      #typewriter-text {
+        font-size: 1.4rem;
+        white-space: normal;
+        animation: none;
+        border-right: none;
+        width: 100%;
+      }
+      .rope-card { font-size: 1.2rem; padding: 1rem; }
+      .overlay-text { font-size: 2.5rem; }
+      .sparkling-heart { font-size: 5rem; }
+      .letter-line { font-size: 1.6rem; }
+      .love-letter-container { padding: 1.5rem; border-radius: 3rem; }
+    }
+  </style>
+</head>
+<body class="text-rose-900 antialiased">
+
+  <!-- BACKGROUND FLOATING HEARTS & SPARKLES (NO MUSIC) -->
+  <div id="floating-hearts"></div>
+  <div id="sparkles-container" style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:1;"></div>
+
+  <!-- ===== SECTION 1: HERO ===== -->
+  <section id="hero-section" class="relative min-h-screen flex flex-col items-center justify-center px-4 z-10 section">
+    <div class="text-center max-w-5xl">
+      <h1 class="handwritten text-7xl md:text-9xl font-bold text-[#c12546] drop-2xl" style="text-shadow: 0 0 20px #ffb6c1, 0 0 40px #ffb6c1;">
+        For the Love <br>of My Life ❤️
+      </h1>
+      <p class="handwritten text-4xl md:text-5xl font-bold text-rose-600 mt-6 bg-white/40 inline-block px-10 py-3 rounded-full shadow-inner backdrop-blur-sm">
+        Happy Valentine my wifey 💕
+      </p>
+      <div class="mt-16">
+        <button id="openLoveBtn" class="glow-btn handwritten text-white text-3xl md:text-4xl px-14 py-6 rounded-full shadow-2xl transition-all">
+          Open My Love
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 2: LOVE MESSAGE ===== -->
+  <section id="love-message" class="hidden-section section container mx-auto max-w-7xl px-4 mt-20 relative">
+    <!-- two rope-hanging cards -->
+    <div class="flex flex-wrap justify-between items-start gap-8">
+      <div class="rope-card max-w-sm">✨ You're the reason I believe in soulmates</div>
+      <div class="rope-card right max-w-sm">✨ Every love story is beautiful, but ours is my favorite</div>
+    </div>
+
+    <!-- romantic quote cards -->
+    <div class="grid md:grid-cols-2 gap-8 mt-28">
+      <div class="bg-white/70 backdrop-blur-sm p-8 rounded-[3rem] shadow-2xl border border-pink-200 hover:scale-105 transition">
+        <p class="handwritten text-3xl md:text-4xl">“I love you not only for what you are, but for what I am when I am with you.”</p>
+      </div>
+      <div class="bg-white/70 backdrop-blur-sm p-8 rounded-[3rem] shadow-2xl border border-pink-200 hover:scale-105 transition">
+        <p class="handwritten text-3xl md:text-4xl">“You are the source of my joy, the center of my world and the whole of my heart.”</p>
+      </div>
+    </div>
+
+    <!-- typewriter special message -->
+    <div class="mt-28 text-center text-4xl md:text-5xl handwritten text-rose-700 px-4">
+      <span id="typewriter-text"></span>
+    </div>
+
+    <!-- button to go to LOVE LETTER SECTION -->
+    <div class="flex justify-center mt-20 mb-16">
+      <button id="toLetterBtn" class="glow-btn handwritten text-white text-2xl md:text-3xl px-12 py-5 rounded-full shadow-2xl border-2 border-white">
+        💌 Read Your Love Letter 💌
+      </button>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 3: ROMANTIC LOVE LETTER + TWO IMAGES ===== -->
+  <section id="letter-final-section" class="hidden-section section container mx-auto mt-10">
+    <!-- Love letter container with poetic lines -->
+    <h2 class="handwritten text-5xl md:text-6xl text-center text-[#c12546] mb-6 drop-shadow">To My Beloved Wife</h2>
+    <div class="love-letter-container" id="loveLetterContainer">
+      <div class="letter-line">My dearest wifey, my heart’s only home,</div>
+      <div class="heart-divider">❤️</div>
+      <div class="letter-line">You came into my life and painted it gold,</div>
+      <div class="letter-line">with every smile, every whisper you told.</div>
+      <div class="heart-divider">✨</div>
+      <div class="letter-line">I don’t need pictures to see your face,</div>
+      <div class="letter-line">it’s etched in my soul, in every place.</div>
+      <div class="heart-divider">🌸</div>
+      <div class="letter-line">No memories of the past? That’s perfectly fine,</div>
+      <div class="letter-line">because every moment with you is a brand new design.</div>
+      <div class="heart-divider">💞</div>
+      <div class="letter-line">Today, tomorrow, and all my life through,</div>
+      <div class="letter-line">there is no one I love more than you.</div>
+      <div class="heart-divider">💌</div>
+      <div class="letter-line">You are my present, my future, my dream,</div>
+      <div class="letter-line">my wife, my lover, my valentine queen.</div>
+      <div class="heart-divider">👑</div>
+    </div>
+
+    <!-- ===== TWO IMAGE SPACES WITH ACTUAL IMAGES ===== -->
+    <!-- Replace the src attributes with your own image URLs -->
+    <div class="image-spaces-container">
+      <div class="empty-image-frame">
+        <img class="frame-image" src="IMG_0371.JPG" alt="Your smile" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="image-alt-text" style="display: none; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+          <span class="frame-emoji">🖼️</span>
+          <span class="frame-text">your smile</span>
+        </div>
+      </div>
+      <div class="empty-image-frame">
+        <img class="frame-image" src="IMG_4857.PNG" alt="Our love" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="image-alt-text" style="display: none; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+          <span class="frame-emoji">🌹</span>
+          <span class="frame-text">our love</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FINAL ROMANTIC ENDING with two buttons -->
+    <div class="min-h-screen flex items-center justify-center px-4 mt-32 mb-20">
+      <div class="bg-white/40 backdrop-blur-lg p-12 md:p-20 rounded-[7rem] shadow-2xl border-4 border-white text-center max-w-4xl">
+        <p class="handwritten text-4xl md:text-5xl leading-relaxed text-rose-800">
+          My love, my wifey, my everything. <br>With you, life is a beautiful dream.
+        </p>
+        <div class="beat-heart my-10">❤️</div>
+        <h2 class="handwritten text-6xl md:text-7xl text-red-600 drop-shadow mb-10">Will You Always Be Mine? ❤️</h2>
+        
+        <!-- TWO BUTTONS -->
+        <div class="flex flex-wrap gap-6 justify-center">
+          <button id="yesForeverBtn" class="glow-btn handwritten text-white text-2xl md:text-3xl px-10 py-5 rounded-full shadow-2xl border-2 border-white">
+            Yes, forever 💖
+          </button>
+          <button id="noOptionBtn" class="glow-btn handwritten text-white text-2xl md:text-3xl px-10 py-5 rounded-full shadow-2xl border-2 border-white">
+            Koi option nahi hai, babu 😘
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLACK OVERLAY FOR FINAL SURPRISE -->
+  <div id="romantic-overlay">
+    <div id="overlay-content">
+      <div class="sparkling-heart">❤️</div>
+      <div class="overlay-text">Happy Valentines Day my Sonaa</div>
+      <div class="overlay-text overlay-text-delay">I love you so so so so so so so so much my wifey</div>
+    </div>
+  </div>
+
+  <!-- hint -->
+  <!-- <div class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-pink-200/90 backdrop-blur-sm px-6 py-3 rounded-full text-rose-800 handwritten shadow-xl text-lg md:text-xl border border-white z-40">
+    💖 click to reveal your surprise 💖
+  </div> -->
+
+  <script>
+    (function() {
+      // ----- FLOATING HEARTS GENERATOR -----
+      const heartsContainer = document.getElementById('floating-hearts');
+      for (let i = 0; i < 40; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart-float';
+        heart.innerText = '❤️';
+        heart.style.left = Math.random() * 100 + '%';
+        heart.style.animationDuration = (8 + Math.random() * 15) + 's';
+        heart.style.fontSize = (1.5 + Math.random() * 3) + 'rem';
+        heart.style.opacity = 0.3 + Math.random() * 0.5;
+        heart.style.animationDelay = (Math.random() * 8) + 's';
+        heartsContainer.appendChild(heart);
+      }
+
+      // ----- SPARKLES -----
+      const sparklesDiv = document.getElementById('sparkles-container');
+      for (let j = 0; j < 60; j++) {
+        const spark = document.createElement('div');
+        spark.className = 'sparkle';
+        spark.style.left = Math.random() * 100 + '%';
+        spark.style.top = Math.random() * 100 + '%';
+        spark.style.animationDelay = Math.random() * 5 + 's';
+        spark.style.animationDuration = (2 + Math.random() * 5) + 's';
+        sparklesDiv.appendChild(spark);
+      }
+
+      // ----- SECTIONS & BUTTONS -----
+      const loveSection = document.getElementById('love-message');
+      const letterFinalSection = document.getElementById('letter-final-section');
+
+      // Buttons
+      const openLoveBtn = document.getElementById('openLoveBtn');
+      const toLetterBtn = document.getElementById('toLetterBtn');
+      const yesBtn = document.getElementById('yesForeverBtn');
+      const noBtn = document.getElementById('noOptionBtn');
+      const overlay = document.getElementById('romantic-overlay');
+
+      // Initially hide sections
+      loveSection.style.display = 'none';
+      letterFinalSection.style.display = 'none';
+
+      function revealSection(section) {
+        if (section.classList.contains('hidden-section')) {
+          section.classList.remove('hidden-section');
+          section.style.display = 'block';
+          setTimeout(() => {
+            section.style.opacity = '1';
+          }, 20);
+        }
+      }
+
+      openLoveBtn.addEventListener('click', () => {
+        revealSection(loveSection);
+        setTimeout(() => {
+          loveSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      });
+
+      toLetterBtn.addEventListener('click', () => {
+        revealSection(letterFinalSection);
+        setTimeout(() => {
+          letterFinalSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      });
+
+      // ----- TYPEWRITER -----
+      const typewriterSpan = document.getElementById('typewriter-text');
+      const message = "You are the reason I believe in forever... 💕";
+      let charIndex = 0;
+      
+      function startTypewriter() {
+        if (charIndex === 0) {
+          function typeNext() {
+            if (charIndex < message.length) {
+              typewriterSpan.textContent += message.charAt(charIndex);
+              charIndex++;
+              setTimeout(typeNext, 90);
+            }
+          }
+          typeNext();
+        }
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.target.id === 'love-message' && entry.isIntersecting && charIndex === 0) {
+            startTypewriter();
+          }
+        });
+      }, { threshold: 0.3 });
+      observer.observe(loveSection);
+
+      // ----- LOVE LETTER REVEAL ON SCROLL -----
+      const letterLines = document.querySelectorAll('.letter-line');
+      const letterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+          }
+        });
+      }, { threshold: 0.5, rootMargin: '0px 0px -50px 0px' });
+      
+      letterLines.forEach(line => {
+        letterObserver.observe(line);
+      });
+
+      // ----- BLACK OVERLAY FUNCTION (for both buttons) -----
+      function showRomanticOverlay() {
+        overlay.style.display = 'flex';
+        setTimeout(() => {
+          overlay.style.opacity = '1';
+        }, 10);
+
+        setTimeout(() => {
+          overlay.style.opacity = '0';
+          setTimeout(() => {
+            overlay.style.display = 'none';
+          }, 2000);
+        }, 8000);
+      }
+
+      yesBtn.addEventListener('click', showRomanticOverlay);
+      noBtn.addEventListener('click', showRomanticOverlay);
+    })();
+  </script>
+
+  <style>
+    .hidden-section {
+      display: none !important;
+      opacity: 0;
+    }
+  </style>
+</body>
+</html>
